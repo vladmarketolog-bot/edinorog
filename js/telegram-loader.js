@@ -603,7 +603,73 @@ function resetAudioUI(btn) {
     currentUtterance = null;
 }
 
-// Ensure audio stops when leaving page
+// --- DEBUG LOGGER ---
+function initDebugLogger() {
+    const logContainer = document.createElement('div');
+    logContainer.id = 'debug-console';
+    logContainer.style.cssText = `
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 200px;
+        background: rgba(0,0,0,0.9);
+        color: lime;
+        font-family: monospace;
+        font-size: 12px;
+        overflow-y: auto;
+        padding: 10px;
+        z-index: 9999;
+        pointer-events: none; /* Allow clicking through */
+        border-top: 2px solid lime;
+    `;
+    document.body.appendChild(logContainer);
+
+    const originalConsoleLog = console.log;
+    const originalConsoleError = console.error;
+    const originalConsoleWarn = console.warn;
+
+    function logToScreen(type, args) {
+        const msg = args.map(arg =>
+            typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+        ).join(' ');
+
+        const line = document.createElement('div');
+        line.style.marginBottom = '4px';
+        line.style.borderBottom = '1px solid #333';
+
+        if (type === 'ERROR') line.style.color = 'red';
+        if (type === 'WARN') line.style.color = 'yellow';
+
+        line.textContent = `[${new Date().toLocaleTimeString()}] [${type}] ${msg}`;
+        logContainer.prepend(line); // Newest on top
+    }
+
+    console.log = (...args) => {
+        originalConsoleLog.apply(console, args);
+        logToScreen('INFO', args);
+    };
+
+    console.error = (...args) => {
+        originalConsoleError.apply(console, args);
+        logToScreen('ERROR', args);
+    };
+
+    console.warn = (...args) => {
+        originalConsoleWarn.apply(console, args);
+        logToScreen('WARN', args);
+    };
+
+    // Catch unhandled errors
+    window.onerror = function (message, source, lineno, colno, error) {
+        logToScreen('FATAL', [`${message} at ${source}:${lineno}`]);
+    };
+}
+
+// Initializing debug logger immediately
+initDebugLogger();
+
 window.addEventListener('beforeunload', () => {
     window.speechSynthesis.cancel();
 });
+
