@@ -9,8 +9,8 @@ const CONFIG = {
         'https://tg.i-c-a.su/rss/Theedinorogblog',
         'https://creators.briefly.ru/feed/telegram/Theedinorogblog'
     ],
-    PROXY_URL: 'https://api.allorigins.win/get?url=',
-    CACHE_KEY_DATA: 'tg_blog_data_v3_clean', // Changed key to force refresh
+    PROXY_URL: '/api/proxy?url=',
+    CACHE_KEY_DATA: 'tg_blog_data_v4_vercel', // Changed key to force refresh
     CACHE_KEY_TIME: 'tg_blog_last_fetch',
     CACHE_DURATION: 6 * 60 * 60 * 1000, // 6 hours
     FEED_CONTAINER_ID: 'posts-container',
@@ -432,7 +432,8 @@ async function fetchAndParseRSS(url, type) {
         if (!response.ok) throw new Error(`${type} Error: ${response.status}`);
 
         let xmlString;
-        if (type === 'PROXY') {
+        // Internal proxy returns text/xml directly, External (allorigins) returns JSON
+        if (type === 'PROXY' && !url.startsWith('/api') && !url.includes('proxy.js')) {
             const data = await response.json();
             xmlString = data.contents;
         } else {
