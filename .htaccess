@@ -1,0 +1,5 @@
+RewriteEngine On
+
+# Minimal configuration
+# Only handle the Rewrite for articles
+RewriteRule ^article/(.*)$ post.php?slug=$1 [L,QSA]

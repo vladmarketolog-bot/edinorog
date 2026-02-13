@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /css/
-Disallow: /js/
 
-Sitemap: https://theedinorog.com/archive.html
+Sitemap: https://theedinorog.com/sitemap.php

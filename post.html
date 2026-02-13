@@ -4,8 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Edinorog Mirror</title> <!-- Will be updated by JS -->
-    <meta name="description" content="Blog post mirror">
+    <title>The Edinorog — Читать статью</title> <!-- JS updates this -->
+    <meta name="description" content="Читать статью из Telegram-канала The Edinorog. Инсайды, венчур и технологии.">
+
+    <!-- Open Graph Fallback -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="The Edinorog Mirror">
+    <meta property="og:image" content="https://theedinorog.com/img/og-image.jpg">
 
     <!-- Tailwind CSS (Local) -->
     <script src="js/tailwindcss.js"></script>
@@ -15,52 +20,50 @@
     <!-- Theme & Fonts (Local) -->
     <link rel="stylesheet" href="css/themes.css">
 
-    <style>
-        body {
-            body {
-                /* Styles handled by themes.css */
-            }
+    body {
+    /* Styles handled by themes.css */
+    }
 
-            ::selection {
-                background-color: rgba(168, 85, 247, 0.3);
-                color: #e9d5ff;
-            }
+    ::selection {
+    background-color: rgba(168, 85, 247, 0.3);
+    color: #e9d5ff;
+    }
 
-            /* Typography for generated content */
-            .prose p {
-                margin-bottom: 1.5em;
-                line-height: 1.8;
-                color: rgba(255, 255, 255, 0.8);
-            }
+    /* Typography for generated content */
+    .prose p {
+    margin-bottom: 1.5em;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.8);
+    }
 
-            .prose a {
-                color: #a855f7;
-                text-decoration: underline;
-                text-underline-offset: 4px;
-            }
+    .prose a {
+    color: #a855f7;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    }
 
-            .prose a:hover {
-                color: #d8b4fe;
-            }
+    .prose a:hover {
+    color: #d8b4fe;
+    }
 
-            .prose img {
-                border-radius: 1rem;
-                margin: 2rem 0;
-                width: 100%;
-                border: 1px solid rgba(255, 255, 255, 0.1);
-            }
+    .prose img {
+    border-radius: 1rem;
+    margin: 2rem 0;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-            .prose ul {
-                list-style-type: disc;
-                padding-left: 1.5rem;
-                margin-bottom: 1.5em;
-                color: rgba(255, 255, 255, 0.8);
-            }
+    .prose ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1.5em;
+    color: rgba(255, 255, 255, 0.8);
+    }
 
-            .prose strong {
-                color: white;
-                font-weight: 700;
-            }
+    .prose strong {
+    color: white;
+    font-weight: 700;
+    }
     </style>
 </head>
 
