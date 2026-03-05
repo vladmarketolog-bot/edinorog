@@ -362,5 +362,6 @@ if ($post) {
     <script>
         lucide.createIcons();
     </script>
+<script src="https://vladmarketolog.ru/vlad-badge.js" async></script>
 </body>
 </html>
